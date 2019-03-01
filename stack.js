@@ -24,7 +24,7 @@ class Stack {
 }
 
 const peek = (stack) => {
-  console.log(stack.top.data);
+  return stack.top.data;
 };
 
 const display = (stack) => {
