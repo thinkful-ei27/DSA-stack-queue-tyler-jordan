@@ -20,8 +20,14 @@ class Stack {
     this.top = node.next;
     return node.data;
   }
-
+  
 }
+
+const isEmpty =(stack) => {
+  if (stack.top === null){
+    return true;
+  }
+};
 
 const peek = (stack) => {
   return stack.top.data;
@@ -88,13 +94,55 @@ function matchingParens(exp) {
   }
 }
 
+
+function sortStack(stack){
+  // [          temp = 7   [  
+  //                       
+  //        1                     
+  //        9  ]                   2 ]
+  
+  let stackB = new Stack;
+  let temp;
+
+  stackB.push(stack.pop());
+
+  do {
+    temp = stack.pop();
+
+    if(isEmpty(stackB)){
+      stackB.push(temp);
+    }
+
+    if(peek(stackB) > temp){
+      stack.push(stackB.pop());
+      stackB.push(temp);
+    }
+
+    else{
+      stackB.push(temp);
+    }
+    
+  } while(!isEmpty(stack));
+  
+  
+  while(!isEmpty(stackB)){
+
+    stack.push(stackB.pop());
+  }
+  return stack;
+  
+}
+
 function main() {
   let testStack = new Stack;
+  testStack.push(2);
+  testStack.push(7);
+  testStack.push(1);
+  testStack.push(9);
 
-
-  display(testStack);
+  display(sortStack(testStack));
 }
-console.log(matchingParens('()()())()'));
-// main();
+
+main();
 
 module.exports = Stack;
