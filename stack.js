@@ -1,5 +1,5 @@
 'use strict';
-const _Node = require('./node');
+const _Node = require('./stackNode');
 
 class Stack {
   constructor() {
@@ -20,11 +20,11 @@ class Stack {
     this.top = node.next;
     return node.data;
   }
-  
+
 }
 
-const isEmpty =(stack) => {
-  if (stack.top === null){
+const isEmpty = (stack) => {
+  if (stack.top === null) {
     return true;
   }
 };
@@ -95,7 +95,7 @@ function matchingParens(exp) {
 }
 
 
-function sortStack(stack){
+function sortStack(stack) {
   // [  2         temp =   [  
   //      7                    
   //        1                   
@@ -106,28 +106,28 @@ function sortStack(stack){
 
   stackB.push(stackA.pop());
 
-  while(!isEmpty(stackA)){
+  while (!isEmpty(stackA)) {
     temp = stackA.pop();
     // console.log('this is temp ' ,temp);
-    if(isEmpty(stackB)){
+    if (isEmpty(stackB)) {
       stackB.push(temp);
     }
-    if(peek(stackB) < temp){
+    if (peek(stackB) < temp) {
       stackA.push(stackB.pop());
       stackB.push(temp);
     }
-    else{
+    else {
       stackB.push(temp);
     }
-    
+
   }
   return stackB;
-//   while(!isEmpty(stackB)){
+  //   while(!isEmpty(stackB)){
 
-//     stackA.push(stackB.pop());
-//   }
-//   return stackA;
- }
+  //     stackA.push(stackB.pop());
+  //   }
+  //   return stackA;
+}
 
 function main() {
   let testStack = new Stack;
