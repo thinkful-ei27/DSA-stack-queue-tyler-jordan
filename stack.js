@@ -96,42 +96,38 @@ function matchingParens(exp) {
 
 
 function sortStack(stack){
-  // [          temp = 7   [  
-  //                       
-  //        1                     
-  //        9  ]                   2 ]
-  
+  // [  2         temp =   [  
+  //      7                    
+  //        1                   
+  //        9 ]                    ]
+  let stackA = stack;
   let stackB = new Stack;
   let temp;
 
-  stackB.push(stack.pop());
+  stackB.push(stackA.pop());
 
-  do {
-    temp = stack.pop();
-
+  while(!isEmpty(stackA)){
+    temp = stackA.pop();
+    // console.log('this is temp ' ,temp);
     if(isEmpty(stackB)){
       stackB.push(temp);
     }
-
-    if(peek(stackB) > temp){
-      stack.push(stackB.pop());
+    if(peek(stackB) < temp){
+      stackA.push(stackB.pop());
       stackB.push(temp);
     }
-
     else{
       stackB.push(temp);
     }
     
-  } while(!isEmpty(stack));
-  
-  
-  while(!isEmpty(stackB)){
-
-    stack.push(stackB.pop());
   }
-  return stack;
-  
-}
+  return stackB;
+//   while(!isEmpty(stackB)){
+
+//     stackA.push(stackB.pop());
+//   }
+//   return stackA;
+ }
 
 function main() {
   let testStack = new Stack;
